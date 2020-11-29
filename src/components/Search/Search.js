@@ -28,7 +28,8 @@ const StyledInput = styled.input`
   line-height: 2.1rem;
 
   ::placeholder {
-    color: ${({ theme }) => theme.colorPrimary50};
+    color: ${({ theme }) => theme.colorPrimary};
+    opacity: 0.5;
   }
 `;
 
@@ -60,8 +61,9 @@ const Input = () => {
         placeholder="Search for any IP address or domain"
         value={value}
         onChange={handleChange}
+        ariaLabel="Search for any IP address or domain"
       />
-      <SubmitButton type="submit" />
+      <SubmitButton type="submit" ariaLabel="submit button" />
     </SearchForm>
   );
 };

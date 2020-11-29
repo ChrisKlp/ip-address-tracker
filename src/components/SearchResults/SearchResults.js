@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   justify-content: center;
   gap: 2.4rem;
   padding: 2.6rem 2.4rem;
-  min-height: 13rem;
+  min-height: 16.1rem;
   text-align: center;
   background: #ffffff;
   box-shadow: 0 5rem 5rem -2.5rem rgba(0, 0, 0, 0.0983665);

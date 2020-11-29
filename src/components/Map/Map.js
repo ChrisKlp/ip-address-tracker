@@ -4,6 +4,7 @@ import { Icon } from 'leaflet';
 import iconLocation from 'assets/icon-location.svg';
 import { useIpContext } from 'context/IpProvider';
 import Loader from 'components/Loader/Loader';
+import 'components/Map/mapStyle.css';
 
 const MapWrapper = styled.main`
   position: relative;
@@ -20,13 +21,11 @@ const LoaderWrapper = styled.div`
   display: grid;
   place-items: center;
   height: calc(100vh - 30rem);
-`;
 
-const styleMap = {
-  width: '100%',
-  height: 'calc(100vh - 30rem)',
-  zIndex: '-9999',
-};
+  @media (min-width: ${({ theme }) => theme.mediaSize.md}) {
+    height: calc(100vh - 28rem);
+  }
+`;
 
 const icon = new Icon({
   iconUrl: iconLocation,
@@ -54,7 +53,7 @@ const Map = () => {
             center={[location.lat, location.lng]}
             zoom={13}
             scrollWheelZoom={false}
-            style={styleMap}
+            className="map-container"
           >
             <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

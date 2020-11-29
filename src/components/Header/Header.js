@@ -8,6 +8,10 @@ import { sharedWrapper } from 'theme/GlobalStyles';
 const Wrapper = styled.header`
   background: url(${patternBg}) no-repeat center / cover;
   height: 30rem;
+
+  @media (min-width: ${({ theme }) => theme.mediaSize.md}) {
+    height: 28rem;
+  }
 `;
 
 const Content = styled.div`
