@@ -14,13 +14,8 @@ const IpProvider = ({ children }) => {
     setError('');
     setLoading(true);
 
-    const API_KEY = process.env.REACT_APP_API_KEY;
     const IP_ADRESS = value;
-    const url =
-      'https://geo.ipify.org/api/v1?apiKey=' +
-      API_KEY +
-      '&ipAddress=' +
-      IP_ADRESS;
+    const url = 'https://geo.ipify.org/api/v1?apiKey=&ipAddress=' + IP_ADRESS;
 
     fetch(url)
       .then(response => {
