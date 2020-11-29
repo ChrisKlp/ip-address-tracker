@@ -2,11 +2,24 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const IpContext = createContext();
 
+const initialValue = {
+  ip: '8.8.8.8',
+  location: {
+    city: 'Mountain View',
+    country: 'US',
+    lat: 37.4223,
+    lng: -122.085,
+    postalCode: '94043',
+    timezone: '-08:00',
+  },
+  isp: 'Google LLC',
+};
+
 const IpProvider = ({ children }) => {
   const [value, setValue] = useState('');
-  const [geolocation, setGeolocation] = useState({});
+  const [geolocation, setGeolocation] = useState(initialValue);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = e => setValue(e.target.value);
 
@@ -44,11 +57,6 @@ const IpProvider = ({ children }) => {
     e.preventDefault();
     initGeolocation();
   };
-
-  useEffect(() => {
-    initGeolocation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const contextValue = {
     value,
