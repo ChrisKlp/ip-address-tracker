@@ -5,22 +5,23 @@ const IpContext = createContext();
 const IpProvider = ({ children }) => {
   const [value, setValue] = useState('');
   const [geolocation, setGeolocation] = useState({});
-  const [error, setError] = useState({});
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const handleChange = e => setValue(e.target.value);
 
   const initGeolocation = () => {
-    setError('');
+    setError(false);
     setLoading(true);
 
     const IP_ADRESS = value;
-    const url = 'https://geo.ipify.org/api/v1?apiKey=&ipAddress=' + IP_ADRESS;
+    const url =
+      'https://geo.ipify.org/api/v1?apiKey=at_RpJd8LBLEAPvTUd9xrnTVsLyqAPxU&ipAddress=' +
+      IP_ADRESS;
 
     fetch(url)
       .then(response => {
         if (!response.ok) {
-          setLoading(false);
           throw response;
         }
         return response.json();
@@ -34,6 +35,7 @@ const IpProvider = ({ children }) => {
         error.json().then(errorMessage => {
           setError(errorMessage);
           console.error(JSON.stringify(errorMessage));
+          setLoading(false);
         });
       });
   };

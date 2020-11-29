@@ -78,7 +78,7 @@ const SearchResults = () => {
   const { geolocation, loading, error } = useIpContext();
   let ipValue = {};
 
-  if (!loading) {
+  if (!loading && !error) {
     const { ip, location, isp } = geolocation;
     const { city, country, postalCode, timezone } = location;
 
@@ -105,9 +105,7 @@ const SearchResults = () => {
   );
 
   return (
-    <Wrapper>
-      {loading ? <Loader /> : error.code ? showError : ipValueList}
-    </Wrapper>
+    <Wrapper>{loading ? <Loader /> : error ? showError : ipValueList}</Wrapper>
   );
 };
 
