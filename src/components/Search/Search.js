@@ -61,9 +61,9 @@ const Input = () => {
         placeholder="Search for any IP address or domain"
         value={value}
         onChange={handleChange}
-        ariaLabel="Search for any IP address or domain"
+        aria-label="Search for any IP address or domain"
       />
-      <SubmitButton type="submit" ariaLabel="submit button" />
+      <SubmitButton type="submit" aria-label="submit button" />
     </SearchForm>
   );
 };
