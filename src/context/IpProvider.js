@@ -15,10 +15,14 @@ const IpProvider = ({ children }) => {
     setLoading(true);
 
     const IP_ADRESS = value;
+    const API_KEY = 'at_RpJd8LBLEAPvTUd9xrnTVsLyqAPxU';
+    const url =
+      'https://geo.ipify.org/api/v1?apiKey=' +
+      API_KEY +
+      '&ipAddress=' +
+      IP_ADRESS;
 
-    fetch(
-      `https://geo.ipify.org/api/v1?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${IP_ADRESS}`
-    )
+    fetch(url)
       .then(response => {
         if (!response.ok) {
           throw response;
