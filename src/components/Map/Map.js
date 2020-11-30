@@ -36,7 +36,7 @@ const Map = () => {
   const { geolocation, loading, error } = useIpContext();
   let location = {};
 
-  if (!loading & !error) {
+  if (!loading && !error) {
     const { lat, lng } = geolocation.location;
     location = { lat, lng };
   }

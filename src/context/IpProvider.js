@@ -1,25 +1,12 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const IpContext = createContext();
 
-const initialValue = {
-  ip: '8.8.8.8',
-  location: {
-    city: 'Mountain View',
-    country: 'US',
-    lat: 37.4223,
-    lng: -122.085,
-    postalCode: '94043',
-    timezone: '-08:00',
-  },
-  isp: 'Google LLC',
-};
-
 const IpProvider = ({ children }) => {
   const [value, setValue] = useState('');
-  const [geolocation, setGeolocation] = useState(initialValue);
+  const [geolocation, setGeolocation] = useState();
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleChange = e => setValue(e.target.value);
 
@@ -28,8 +15,11 @@ const IpProvider = ({ children }) => {
     setLoading(true);
 
     const IP_ADRESS = value;
+    const API_KEY = process.env.REACT_APP_API_KEY;
     const url =
-      'https://geo.ipify.org/api/v1?apiKey=at_RpJd8LBLEAPvTUd9xrnTVsLyqAPxU&ipAddress=' +
+      'https://geo.ipify.org/api/v1?apiKey=' +
+      API_KEY +
+      '&ipAddress=' +
       IP_ADRESS;
 
     fetch(url)
@@ -57,6 +47,11 @@ const IpProvider = ({ children }) => {
     e.preventDefault();
     initGeolocation();
   };
+
+  useEffect(() => {
+    initGeolocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const contextValue = {
     value,
